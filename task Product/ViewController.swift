@@ -48,6 +48,12 @@ class ViewController: UIViewController {
         self.reset()
         // Do any additional setup after loading the view.
     }
+    //画面が戻った際にタイマー等の機能がリセットされるようにする
+    override func viewWillAppear(_ animated: Bool) {
+        count = 14.00
+        timerLabel.text = String(format: "%.2f", count)
+        self.reset()
+    }
     
     
     //画面遷移の際にscoreの数値を受け渡すようにする。

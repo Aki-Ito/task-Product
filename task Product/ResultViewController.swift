@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultViewController: UIViewController {
+class ResultViewController: UIViewController, UIPageViewControllerDelegate {
     
     var receiveValue: Int!
     var countReset: Float = 14.00
@@ -22,14 +22,10 @@ class ResultViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let gameViewController: ViewController
-            = segue.destination as! ViewController
-        gameViewController.count = self.countReset
-    }
     
     @IBAction func goBackToGame(){
         self.dismiss(animated: true, completion: nil)
+        
     }
     
 
