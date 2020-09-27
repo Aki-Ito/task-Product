@@ -32,7 +32,8 @@ class ViewController: UIViewController {
     var score: Int = 0
     //この変数で何番まで押されているのかを管理する
     var currentNumber: Int = -1
-    
+    //スコアの保存をする
+    let defaults: UserDefaults = UserDefaults.standard
     
    
     //画面が移り変わる時
@@ -69,8 +70,7 @@ class ViewController: UIViewController {
             timerLabel.text = String(format: "%.2f", count)
             self.performSegue(withIdentifier: "toResult", sender: nil)
             
-            //スコアの保存をする
-            let defaults: UserDefaults = UserDefaults.standard
+           
             
             let highScore1: Int = defaults.integer(forKey: "score1")
             let highScore2: Int = defaults.integer(forKey: "score2")
