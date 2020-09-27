@@ -65,7 +65,8 @@ class ViewController: UIViewController {
     @objc func down(){
         if count > 0.00 {count = count-0.01
             timerLabel.text = String(format: "%.2f", count)
-        }else{
+        }else if timer.isValid{
+            timer.invalidate()
             count = 0.00
             timerLabel.text = String(format: "%.2f", count)
             self.performSegue(withIdentifier: "toResult", sender: nil)
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
             scoreLabel.text = String(score)
         }
         //一通り押し終わった後の処理
-        if numberArray[number] == 8{
+        if numberArray[number] == 8&&currentNumber == 7{
             currentNumber = -1
             count = count + 2.00
             self.reset()
