@@ -34,25 +34,22 @@ class ViewController: UIViewController {
     var currentNumber: Int = -1
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //ゲームプレイ画面になった瞬間タイマーが開始する
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.01,
-                                     target: self,
-                                     selector: #selector(self.down),
-                                     userInfo: nil,
-                                     repeats: true)
-        
-        
-        self.reset()
-        // Do any additional setup after loading the view.
-    }
-    //画面が戻った際にタイマー等の機能がリセットされるようにする
+   
+    //画面が移り変わる時
     override func viewWillAppear(_ animated: Bool) {
         count = 14.00
-        timerLabel.text = String(format: "%.2f", count)
-        self.reset()
+        currentNumber = -1
+        score = 0
+        scoreLabel.text = String(score)
+        if !timer.isValid {
+            timer = Timer.scheduledTimer(timeInterval: 0.01,
+                                         target: self,
+                                         selector: #selector(self.down),
+                                         userInfo: nil,
+                                         repeats: true)
+            self.reset()
+
+        }
     }
     
     
@@ -71,6 +68,31 @@ class ViewController: UIViewController {
             count = 0.00
             timerLabel.text = String(format: "%.2f", count)
             self.performSegue(withIdentifier: "toResult", sender: nil)
+            
+            //スコアの保存をする
+            let defaults: UserDefaults = UserDefaults.standard
+            
+            let highScore1: Int = defaults.integer(forKey: "score1")
+            let highScore2: Int = defaults.integer(forKey: "score2")
+            let highScore3: Int = defaults.integer(forKey: "score3")
+            
+            
+//            defaults.set(score, forKey:"score1")
+//            defaults.set(score - 10, forKey:"score2")
+//            defaults.set(score - 20, forKey: "score3")
+            
+            if score > highScore1{
+                defaults.set(score, forKey:"score1")
+                defaults.set(highScore1, forKey:"score2")
+                defaults.set(highScore2, forKey: "score3")
+            } else if score > highScore2{
+                defaults.set(score, forKey:"score2")
+                defaults.set(highScore2, forKey: "score3")
+            } else if score > highScore3{
+                defaults.set(score, forKey:"score3")
+            }
+            
+            defaults.synchronize()
         }
     }
     
@@ -79,7 +101,7 @@ class ViewController: UIViewController {
         
         if numberArray[number] == currentNumber+1{
             currentNumber = currentNumber + 1
-            score = score + 10
+            score += 10
             scoreLabel.text = String(score)
         }
         //一通り押し終わった後の処理
@@ -88,6 +110,8 @@ class ViewController: UIViewController {
             count = count + 2.00
             self.reset()
         }
+        
+       
     }
     
     //配列をシャッフルし配置するメソッド

@@ -168,7 +168,7 @@
                         <outlet property="tapbutton8" destination="19C-J3-TFH" id="zmT-wf-92g"/>
                         <outlet property="tapbutton9" destination="Xfn-FB-LfJ" id="8h7-7C-uSJ"/>
                         <outlet property="timerLabel" destination="CfI-Wi-XGF" id="CcA-tE-tB7"/>
-                        <segue destination="yUV-dS-TK9" kind="presentation" identifier="toResult" id="b0y-Dj-75o"/>
+                        <segue destination="yUV-dS-TK9" kind="presentation" identifier="toResult" modalPresentationStyle="fullScreen" id="b0y-Dj-75o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -180,7 +180,7 @@
             <objects>
                 <viewController id="yUV-dS-TK9" customClass="ResultViewController" customModule="task_Product" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="stz-b4-kX2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="score: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9g-RI-TQV">
@@ -201,6 +201,9 @@
                                 <rect key="frame" x="182" y="406" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ranking"/>
+                                <connections>
+                                    <action selector="ranking" destination="yUV-dS-TK9" eventType="touchUpInside" id="Txg-Sc-mj5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcc-aB-War">
                                 <rect key="frame" x="187" y="562" width="46" height="56"/>
